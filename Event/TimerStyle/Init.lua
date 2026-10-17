@@ -1,0 +1,34 @@
+local addonName, ns = ...
+
+local timerStyle = {}
+ns.timerStyle = timerStyle
+
+timerStyle.SECONDS = 12
+timerStyle.MAX_TEMPLATES = 7
+timerStyle.TEXT_SCALE_MIN = 50
+timerStyle.TEXT_SCALE_MAX = 300
+timerStyle.NAME_SCALE_MIN = 100
+timerStyle.NAME_SCALE_MAX = 150
+timerStyle.BACKGROUND_DEFAULT = "DEFAULT"
+timerStyle.BACKGROUND_SHOW = "SHOW"
+timerStyle.BACKGROUND_HIDE = "HIDE"
+timerStyle.TIMER_DEFAULT = "DEFAULT"
+timerStyle.TIMER_SHOW = "SHOW"
+timerStyle.TIMER_HIDE = "HIDE"
+timerStyle.GLOW_SCALE_MIN = 50
+timerStyle.GLOW_SCALE_MAX = 140
+timerStyle.GLOW_SPEED_MIN = 2
+timerStyle.GLOW_SPEED_MAX = 9
+timerStyle.GLOW_LINES_MIN = 1
+timerStyle.GLOW_LINES_MAX = 16
+timerStyle.GLOW_SPARKS_MIN = 1
+timerStyle.GLOW_SPARKS_MAX = 10
+timerStyle.GLOW_LENGTH_MIN = 5
+timerStyle.GLOW_LENGTH_MAX = 100
+timerStyle.GLOW_THICKNESS_MIN = 1
+timerStyle.GLOW_THICKNESS_MAX = 8
+timerStyle.GLOW_SPARK_SIZE_MIN = 50
+timerStyle.GLOW_SPARK_SIZE_MAX = 200
+timerStyle.PULSE_STRENGTH_MIN = 50
+timerStyle.PULSE_STRENGTH_MAX = 200
+timerStyle.PULSE_STRENGTH_DEFAULT = 100
