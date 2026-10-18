@@ -10,7 +10,7 @@ Pick the game's look or a cleaner one when you first log in, and fine-tune it la
 
 ### The bar
 
-- Vertical or horizontal, running either way, any length and thickness
+- Vertical or horizontal, running either way, with adjustable length and thickness
 - Abilities wait beside the bar, slide onto it as they come near, queue up and pause just like the game's own
 - Time marks every 5 or 10 seconds, as lines, icons or text
 - The standard background, or a plain one with your own texture, color and border
@@ -43,7 +43,7 @@ Pick the game's look or a cleaner one when you first log in, and fine-tune it la
 ### Profiles
 
 - One per character, or one for each specialization
-- Share a profile as a line of text
+- Share a profile as a text string
 
 ## Requirements
 
@@ -61,6 +61,21 @@ Install it from CurseForge, Wago or WoWInterface, or download the archive of a v
 - `/abflow help`, or any other word, lists the commands.
 
 The settings window also opens from the addon menu by the minimap, and from "All Settings" in the bar's Edit Mode dialog.
+
+## Help translate
+
+AbilityFlow is written in English and Russian. Other languages are translated by the community on CurseForge, and a translation shows up in the next release.
+
+- Open the [localization page](https://www.curseforge.com/wow/addons/abilityflow/localization) of the project
+- Pick your language and translate the phrases you see. Leave a phrase alone if you are not sure; it stays in English until someone translates it.
+
+Please keep these as they are:
+
+- `%s`, `%d` and similar codes stay in the text. They are replaced by the game with a name or a number. Move them to where the sentence needs them, but do not remove or add any.
+- `\n` is a line break. Keep it where the English text has it.
+- Short labels sit on buttons and in drop-down lists, so keep them about as short as the English ones.
+
+Thank you for helping!
 
 ## Works with
 

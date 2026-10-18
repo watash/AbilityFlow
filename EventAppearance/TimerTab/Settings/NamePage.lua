@@ -28,7 +28,7 @@ function settings.builders.NAME(page, templateOf, changedCallback)
     nameScale:ClearAllPoints()
     nameScale:SetPoint("TOPLEFT", page, "TOPLEFT", controls.LABEL_GAP + controls.CHECKBOX_PICTURE_PADDING, -controls.FIRST_ROW_OFFSET)
 
-    local backgroundRow = controls.InlineDropdown(page, nameScale, L.TIMER_STYLE_NAME_BACKGROUND, {
+    local backgroundRow = controls.InlineDropdown(page, nameScale, L.EVENT_APPEARANCE_ELEMENT_NAMEBACKGROUND, {
         { text = L.TIMER_STYLE_BACKGROUND_DEFAULT, value = BACKGROUND_DEFAULT },
         { text = L.TIMER_STYLE_BACKGROUND_SHOW, value = BACKGROUND_SHOW },
         { text = L.TIMER_STYLE_BACKGROUND_HIDE, value = BACKGROUND_HIDE },

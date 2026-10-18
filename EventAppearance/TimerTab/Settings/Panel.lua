@@ -15,8 +15,8 @@ local settings = ns.timerTab.settings
 local PAGES = {
     { key = "GLOW", labelKey = "TIMER_STYLE_TAB_GLOW" },
     { key = "EFFECTS", labelKey = "TIMER_STYLE_TAB_EFFECTS" },
-    { key = "TIMER", labelKey = "TIMER_STYLE_TAB_TIMER" },
-    { key = "NAME", labelKey = "TIMER_STYLE_TAB_NAME" },
+    { key = "TIMER", labelKey = "EVENT_APPEARANCE_ELEMENT_COOLDOWN" },
+    { key = "NAME", labelKey = "EVENT_APPEARANCE_ELEMENT_NAME" },
 }
 
 local TAB_TEXT_PADDING = controls.SUBTAB_TEXT_PADDING

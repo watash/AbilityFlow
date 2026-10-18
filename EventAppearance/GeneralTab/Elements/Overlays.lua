@@ -83,7 +83,7 @@ local function buildOverlay(kind, content, onChanged)
     local last = enabledCheckbox
     local verticalCheckbox
     if spec.row then
-        verticalCheckbox = controls.Checkbox(firstColumn, last, L.EVENT_APPEARANCE_VERTICAL, appearance.Reader(kind, "vertical"),
+        verticalCheckbox = controls.Checkbox(firstColumn, last, L.ORIENTATION_VERTICAL, appearance.Reader(kind, "vertical"),
             function(checked)
                 set("vertical", checked)
             end)

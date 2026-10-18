@@ -2,12 +2,20 @@ local addonName, ns = ...
 
 local ipairs = ipairs
 local math = math
+local setmetatable = setmetatable
 local C_Texture = C_Texture
 
 local statusMark = ns.statusMark
 local MODE_PAUSED, MODE_QUEUED = statusMark.MODE_PAUSED, statusMark.MODE_QUEUED
 local TEXT_BLOCKED, TEXT_CAPTION = statusMark.TEXT_BLOCKED, statusMark.TEXT_CAPTION
 local COLOR_FIELD_SUFFIX = statusMark.COLOR_FIELD_SUFFIX
+local colorFieldOf = setmetatable({}, {
+    __index = function(fields, key)
+        local field = key .. COLOR_FIELD_SUFFIX
+        fields[key] = field
+        return field
+    end,
+})
 local STATUS_TEXTS, STATUS_TEXTS_BARE = statusMark.TEXTS, statusMark.TEXTS_BARE
 local unbracketed = statusMark.Unbracketed
 local eventStyle = ns.eventStyle
@@ -65,9 +73,9 @@ function statusMark.Set(event, mode, blocked, caption)
     end
     local signMode = ns.appearance.Get("states", "signs") and mode or nil
     local tint = visual and ns.appearance.Get("states", "tintedFrame")
-        and ns.appearance.Get("states", visual .. COLOR_FIELD_SUFFIX) or nil
+        and ns.appearance.Get("states", colorFieldOf[visual]) or nil
     local shownKey = ns.appearance.Get("states", "captions") and textKey or nil
-    local color = shownKey and ns.appearance.Get("states", shownKey .. COLOR_FIELD_SUFFIX) or nil
+    local color = shownKey and ns.appearance.Get("states", colorFieldOf[shownKey]) or nil
     if not textKey and caption and ns.appearance.Get("states", "captions") then
         shownKey, color = TEXT_CAPTION, ns.options.Get("captionColor")
     end

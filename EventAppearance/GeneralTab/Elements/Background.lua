@@ -116,7 +116,7 @@ function background.Build(content, onChanged)
     onTop:SetPoint("LEFT", switch.label, "RIGHT", ON_TOP_GAP, 0)
     controls.SetTooltip(onTop, L.EVENT_APPEARANCE_TIP_BACKGROUND_ON_TOP)
 
-    local borderTextureRow = controls.InlineDropdown(borderColumn, borderColumn, L.EVENT_APPEARANCE_BACKGROUND_BORDER_TEXTURE,
+    local borderTextureRow = controls.InlineDropdown(borderColumn, borderColumn, L.EVENT_APPEARANCE_TEXT_BACKGROUND,
         media.BorderOptions(), appearance.Reader(GROUP, "borderTexture"), function(value)
             set("borderTexture", value)
             refreshBorderRows()

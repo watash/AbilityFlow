@@ -74,12 +74,17 @@ local function layout(event)
     local behindIsHigher = timeline.EntersFromStart()
     local lineScale = timeline.GetLineScale and timeline.GetLineScale() or 1
     local trackLength = timeline.GetTrackLength()
-    local key = (horizontal and "h" or "v") .. (behindIsHigher and "+" or "-") .. event:GetWidth() .. ":" .. lineScale .. ":"
-        .. trackLength
-    if event.trailKey == key then
+    local width = event:GetWidth()
+    local laid = event.trailLaid
+    if not laid then
+        laid = {}
+        event.trailLaid = laid
+    elseif laid.horizontal == horizontal and laid.behindIsHigher == behindIsHigher and laid.width == width
+        and laid.lineScale == lineScale and laid.trackLength == trackLength then
         return
     end
-    event.trailKey = key
+    laid.horizontal, laid.behindIsHigher, laid.width = horizontal, behindIsHigher, width
+    laid.lineScale, laid.trackLength = lineScale, trackLength
     local overlap = TRAIL_OVERLAP
     local across, along = event.trailThickness * (1 + (lineScale - 1) * TRAIL_THICKNESS_FOLLOW), overlap + trackLength * TRAIL_SECONDS / TRACK_SPAN_SECONDS
     for layer, trail in ipairs(event.trails) do

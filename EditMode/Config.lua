@@ -213,7 +213,7 @@ local function markSettings(callbacks)
             values = function()
                 return {
                     { text = L.NONE, value = timeline.MARK_NONE },
-                    { text = L.MARK_ICON, value = timeline.MARK_ICON },
+                    { text = L.EVENT_APPEARANCE_ELEMENT_ICON, value = timeline.MARK_ICON },
                     { text = L.MARK_ICON_TEXT, value = timeline.MARK_ICON_TEXT },
                     { text = L.MARK_BAR, value = timeline.MARK_BAR },
                     { text = L.MARK_BAR_TEXT, value = timeline.MARK_BAR_TEXT },

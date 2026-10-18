@@ -248,9 +248,9 @@ end
 
 function optionsTab.Build(content)
     local eventsBox = createBox(content, nil, L.OPTIONS_EVENTS_HEADING, L.OPTIONS_CAPTION_HEADING, {
-        { label = L.OPTIONS_READY_CHECK, key = "showReadyCheck" },
+        { label = L.READY_CHECK, key = "showReadyCheck" },
         { label = L.OPTIONS_PULL_TIMER, key = "showPullTimer" },
-        { label = L.OPTIONS_BREAK, key = "showBreak" },
+        { label = L.BREAK_TIMER, key = "showBreak" },
         { label = L.OPTIONS_KEY_REROLL, key = "showKeyReroll", tooltip = L.OPTIONS_KEY_REROLL_TOOLTIP },
         { label = L.OPTIONS_INITIATOR, key = "showInitiator", tooltip = L.OPTIONS_INITIATOR_TOOLTIP, column = 2 },
         { label = L.OPTIONS_CAPTION_COLOR, key = "captionColor", color = true, column = 2, enabledWhen = function()

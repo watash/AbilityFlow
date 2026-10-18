@@ -2,6 +2,7 @@ local addonName, ns = ...
 
 local pcall = pcall
 local math = math
+local issecretvalue = issecretvalue
 local C_EncounterTimeline = C_EncounterTimeline
 local Enum = Enum
 
@@ -101,13 +102,24 @@ local function placeCountdown(event)
     countdown:SetPoint("CENTER", event, style.anchor, style.shiftX * state.scale, style.shiftY * state.scale)
 end
 
+local function limitReach(reach, extent)
+    if issecretvalue(extent) then
+        return reach
+    end
+    return math.max(reach, -extent / 2)
+end
+
 function eventStyle.PlaceTextBackground(event, key, size, padding, paddingY)
     local style = state.texts[key]
     local background = event.textBackgrounds[key]
     local fontString = event.texts[key]
     local offsetX, offsetY = padding or style.backgroundOffsetX, paddingY or padding or style.backgroundOffsetY
-    offsetX = math.max(offsetX, -fontString:GetStringWidth() / 2)
-    offsetY = math.max(offsetY, -fontString:GetStringHeight() / 2)
+    if offsetX < 0 then
+        offsetX = limitReach(offsetX, fontString:GetStringWidth())
+    end
+    if offsetY < 0 then
+        offsetY = limitReach(offsetY, fontString:GetStringHeight())
+    end
     local lift = size * (BACKGROUND_BASE_RAISE + style.backgroundRaise / PERCENT)
     background:ClearAllPoints()
     background:SetPoint("TOPLEFT", fontString, "TOPLEFT", -offsetX, offsetY + lift)

@@ -59,6 +59,7 @@ end
 
 local laneEvents = {}
 local laneOf = {}
+local lastPlace = {}
 
 local function fartherFromEnd(a, b)
     if a.flow.remaining ~= b.flow.remaining then
@@ -118,7 +119,7 @@ function timeline.AssignLanes(step, horizontal)
         laneEvents[index] = nil
     end
     table.sort(laneEvents, fartherFromEnd)
-    local lastPlace = { math.huge, math.huge }
+    lastPlace[1], lastPlace[2] = math.huge, math.huge
     local inLine
     local reach = size * LANE_OVERLAP_SHARE
     for _, event in ipairs(laneEvents) do

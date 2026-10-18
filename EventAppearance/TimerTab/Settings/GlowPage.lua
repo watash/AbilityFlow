@@ -131,7 +131,7 @@ function settings.builders.GLOW(page, templateOf, changedCallback)
             setOwn("length", value)
             changedCallback()
         end, SLIDER_EXTRA, "%d%%", controls.VALUE_WIDTH)
-    local glowThickness = controls.EditableSlider(right, glowLength, L.TIMER_STYLE_GLOW_THICKNESS,
+    local glowThickness = controls.EditableSlider(right, glowLength, L.EVENT_APPEARANCE_BORDER_THICKNESS,
         timerStyle.GLOW_THICKNESS_MIN, timerStyle.GLOW_THICKNESS_MAX, 1, function()
             return ownOf("thickness", ns.glow.DEFAULT_THICKNESS)
         end,
@@ -146,7 +146,7 @@ function settings.builders.GLOW(page, templateOf, changedCallback)
             setOwn("particles", value)
             changedCallback()
         end, SLIDER_EXTRA, "%d", controls.VALUE_WIDTH)
-    local glowSparkSize = controls.EditableSlider(right, glowSparks, L.TIMER_STYLE_GLOW_SPARK_SIZE,
+    local glowSparkSize = controls.EditableSlider(right, glowSparks, L.EVENT_APPEARANCE_SIZE,
         timerStyle.GLOW_SPARK_SIZE_MIN, timerStyle.GLOW_SPARK_SIZE_MAX, 1, function()
             return ownOf("sparkSize", ns.glow.FULL_SHARE)
         end,

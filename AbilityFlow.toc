@@ -9,6 +9,8 @@
 ## X-License: MIT
 ## X-Curse-Project-ID: 1750531
 ## X-Wago-ID: ZKbqwO61
+## X-WoWI-ID: 27270
+## OptionalDeps: BigWigs, DBM-Core, NorthernSkyRaidTools
 ## SavedVariables: AbilityFlowDB
 ## IconTexture: Interface\AddOns\AbilityFlow\Media\Icons\icon.tga
 ## AddonCompartmentFunc: AbilityFlow_OnCompartmentClick
@@ -18,6 +20,16 @@
 Libs\embeds.xml
 Locales\enUS.lua
 Locales\ruRU.lua
+Locales\deDE.lua
+Locales\frFR.lua
+Locales\esES.lua
+Locales\esMX.lua
+Locales\itIT.lua
+Locales\ptBR.lua
+Locales\koKR.lua
+Locales\zhCN.lua
+Locales\zhTW.lua
+Locales\GameWords.lua
 Core\Text.lua
 Core\Tables.lua
 Core\Media.lua

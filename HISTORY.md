@@ -2,6 +2,12 @@
 
 Every version, the newest first. Write the notes of a new version at the top, then run `python Tools/release.py X.Y.Z --notes`, which makes CHANGELOG.md (the notes of that version only, which the release and the sites show) from its section here.
 
+## 1.0.1
+
+- Fixed an error that sometimes appeared in combat.
+- Small optimizations.
+- Small improvements to the interface texts.
+
 ## 1.0.0
 
 First release.

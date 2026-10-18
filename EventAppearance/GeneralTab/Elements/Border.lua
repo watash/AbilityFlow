@@ -43,7 +43,7 @@ function border.Build(content, onChanged)
             onChanged()
         end, controls.WIDE_SLIDER_EXTRA, nil, VALUE_BOX_WIDTH)
 
-    colorRow = controls.InlineColor(column, thicknessRow, L.EVENT_APPEARANCE_BORDER_DEFAULT_COLOR,
+    colorRow = controls.InlineColor(column, thicknessRow, L.EVENT_APPEARANCE_TEXT_COLOR,
         appearance.Reader("border", "color"), function(red, green, blue)
             appearance.Set("border", "color", { r = red, g = green, b = blue, a = 1 })
             appearance.Apply()
