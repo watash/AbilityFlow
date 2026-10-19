@@ -85,7 +85,7 @@ function applyTimerStyle(event, remaining)
     if ns.statusMark.IsOn(event) then
         return
     end
-    local template = ns.timerStyle.Evaluate(remaining)
+    local template = ns.timerStyle.TemplateFor(remaining)
     event.flow.showTenths = template ~= nil and template.tenths == true
     ns.eventStyle.PaintCountdown(event, template, timeline.currentIconSize())
 end
@@ -223,6 +223,7 @@ function timeline.RemoveEvent(eventID)
     state.activeEvents[eventID] = nil
     state.activeCount = state.activeCount - 1
     state.captions[eventID] = nil
+    state.limitedEvents[eventID] = nil
     if state.longEvents[eventID] then
         state.longEvents[eventID] = nil
         for index, markedID in ipairs(state.longOrder) do

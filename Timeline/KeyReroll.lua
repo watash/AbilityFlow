@@ -5,6 +5,7 @@ local C_ChallengeMode = C_ChallengeMode
 local C_MythicPlus = C_MythicPlus
 local C_PartyInfo = C_PartyInfo
 local Enum = Enum
+local issecretvalue = issecretvalue
 
 local L = ns.L
 
@@ -36,7 +37,7 @@ function keyReroll.Start()
     keyAtEnd = key
 end
 
-function keyReroll.Completed()
+function keyReroll.RunFinished()
     local info = C_ChallengeMode.GetChallengeCompletionInfo()
     if not info or issecretvalue(info.onTime) or not info.onTime then
         return
@@ -48,20 +49,20 @@ function keyReroll.Completed()
     keyReroll.Start()
 end
 
-function keyReroll.BagsChanged()
+function keyReroll.DismissIfKeyChanged()
     if keyAtEnd and ownedKey() ~= keyAtEnd then
-        keyReroll.Left()
+        keyReroll.Dismiss()
     end
 end
 
-function keyReroll.Left()
+function keyReroll.Dismiss()
     keyAtEnd = nil
     slot.Stop()
 end
 
 ns.options.OnChanged(function(key, value)
     if key == "showKeyReroll" and not value then
-        slot.Stop()
+        keyReroll.Dismiss()
     end
 end)
 
@@ -71,10 +72,10 @@ frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 frame:RegisterEvent("BAG_UPDATE_DELAYED")
 frame:SetScript("OnEvent", function(_, event)
     if event == "CHALLENGE_MODE_COMPLETED" then
-        keyReroll.Completed()
+        keyReroll.RunFinished()
     elseif event == "BAG_UPDATE_DELAYED" then
-        keyReroll.BagsChanged()
+        keyReroll.DismissIfKeyChanged()
     else
-        keyReroll.Left()
+        keyReroll.Dismiss()
     end
 end)

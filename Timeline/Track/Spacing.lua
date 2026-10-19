@@ -81,7 +81,7 @@ end
 function timeline.EntryFirstOffset()
     local size = timeline.currentIconSize()
     if not timeline.IsArrivalAnimated() or not timeline.IsBlizzlikeBackdrop() then
-        return size * timeline.EntryFirstShare() + timeline.GetBorderReach() + timeline.FlatBorderReach(size)
+        return size * timeline.EntryFirstShare() + timeline.BorderReach() + timeline.FlatBorderReach(size)
     end
     return timeline.DIVIDER_GAP + size / 2 + size * firstDistanceShare() + timeline.FlatBorderReach(size)
 end
@@ -89,18 +89,18 @@ end
 function timeline.ExitFirstOffset()
     local size = timeline.currentIconSize()
     if not timeline.IsShiftAnimated() or not timeline.IsBlizzlikeBackdrop() then
-        return size * timeline.HeldFirstShare() + timeline.GetBorderReach() + timeline.FlatBorderReach(size)
+        return size * timeline.HeldFirstShare() + timeline.BorderReach() + timeline.FlatBorderReach(size)
     end
-    return timeline.GetEndReach() + EXIT_AREA_GAP + size / 2 + timeline.FlatBorderReach(size)
+    return timeline.EndReach() + EXIT_AREA_GAP + size / 2 + timeline.FlatBorderReach(size)
 end
 
-function timeline.GetWaitingExtents()
+function timeline.WaitingExtents()
     local size = timeline.currentIconSize()
     local step = timeline.WaitingStep(size)
     local entryReach = timeline.EntryFirstOffset() + (LONG_TRACK_PLACES - 1) * step + step / 2
     local exitReach = timeline.ExitFirstOffset() + (QUEUED_TRACK_PLACES - 1) * step + step / 2
     if timeline.queuedHidden then
-        exitReach = timeline.GetEndReach()
+        exitReach = timeline.EndReach()
     end
     return entryReach, exitReach
 end

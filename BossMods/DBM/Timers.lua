@@ -51,7 +51,7 @@ function dbmTimers.Start(timerID, text, seconds, icon, colorKind)
     if not id then
         return
     end
-    timeline.MarkLongEvent(id)
+    timeline.MarkLongEvent(id, nil, nil, true)
     shown[timerID] = { id = id, text = text, icon = icon, colorKind = colorKind }
     ns.dbmColors.Remember(id, colorKind)
     timeline.RefreshEventName(id)

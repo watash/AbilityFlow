@@ -53,7 +53,7 @@ function trackPreview.LayoutTrail(event)
         corners[index + 1] = info.topTexCoord + unit[index + 1] * (info.bottomTexCoord - info.topTexCoord)
     end
     local length = previewRatio
-        * (timeline.TRAIL_OVERLAP + timeline.GetTrackLength() * timeline.TRAIL_SECONDS / THRESHOLD)
+        * (timeline.TRAIL_OVERLAP + timeline.TrackLength() * timeline.TRAIL_SECONDS / THRESHOLD)
     local overlap = timeline.TRAIL_OVERLAP * previewRatio
     for _, layer in ipairs(event.trailLayers) do
         layer.texture:SetTexCoord(unpack(corners))

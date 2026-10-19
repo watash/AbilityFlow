@@ -18,12 +18,12 @@ local newStyle
 
 local function saved()
     local profile = ns.profiles.Current()
-    local data = profile.timerStyle
-    if not data then
-        data = newStyle()
-        profile.timerStyle = data
+    local style = profile.timerStyle
+    if not style then
+        style = newStyle()
+        profile.timerStyle = style
     end
-    return data
+    return style
 end
 timerStyle.Saved = saved
 
@@ -47,14 +47,14 @@ function timerStyle.CanAdd()
     return #saved().order < timerStyle.MAX_TEMPLATES
 end
 
-local function iconSpellIn(data, templateID)
-    local template = data.templates[templateID]
+local function iconSpellIn(style, templateID)
+    local template = style.templates[templateID]
     if not template then
         return nil
     end
     if not template.iconSpell then
         local taken = {}
-        for _, other in pairs(data.templates) do
+        for _, other in pairs(style.templates) do
             if other.iconSpell then
                 taken[other.iconSpell] = true
             end
@@ -70,17 +70,17 @@ local function iconSpellIn(data, templateID)
     return template.iconSpell
 end
 
-local function addTo(data, copyFrom)
-    if #data.order >= timerStyle.MAX_TEMPLATES then
+local function addTo(style, copyFrom)
+    if #style.order >= timerStyle.MAX_TEMPLATES then
         return nil
     end
-    local templateID = data.nextID
-    data.nextID = templateID + 1
-    local source = copyFrom and data.templates[copyFrom]
-    data.templates[templateID] = source and CopyTable(source) or timerStyle.newTemplate()
-    data.templates[templateID].iconSpell = nil
-    table.insert(data.order, templateID)
-    iconSpellIn(data, templateID)
+    local templateID = style.nextID
+    style.nextID = templateID + 1
+    local source = copyFrom and style.templates[copyFrom]
+    style.templates[templateID] = source and CopyTable(source) or timerStyle.newTemplate()
+    style.templates[templateID].iconSpell = nil
+    table.insert(style.order, templateID)
+    iconSpellIn(style, templateID)
     return templateID
 end
 
@@ -93,9 +93,9 @@ function timerStyle.IconSpell(templateID)
 end
 
 newStyle = function(glowInstead)
-    local data = { enabled = true, seconds = {}, templates = {}, order = {}, nextID = 1 }
-    local templateID = addTo(data)
-    local template = data.templates[templateID]
+    local style = { enabled = true, seconds = {}, templates = {}, order = {}, nextID = 1 }
+    local templateID = addTo(style)
+    local template = style.templates[templateID]
     template.pulse = STARTER_PULSE and not glowInstead
     if glowInstead then
         template.useGlow = true
@@ -103,30 +103,30 @@ newStyle = function(glowInstead)
     end
     template.flash = STARTER_FLASH
     template.tenths = STARTER_TENTHS
-    data.seconds[STARTER_SECOND] = templateID
-    return data
+    style.seconds[STARTER_SECOND] = templateID
+    return style
 end
 
 timerStyle.NewStyle = newStyle
 
-ns.profiles.OnComplete(function(data)
-    if data.timerStyle == nil then
-        data.timerStyle = newStyle()
+ns.profiles.OnComplete(function(profile)
+    if profile.timerStyle == nil then
+        profile.timerStyle = newStyle()
     end
 end)
 
 function timerStyle.Remove(templateID)
-    local data = saved()
-    data.templates[templateID] = nil
-    for index, id in ipairs(data.order) do
+    local style = saved()
+    style.templates[templateID] = nil
+    for index, id in ipairs(style.order) do
         if id == templateID then
-            table.remove(data.order, index)
+            table.remove(style.order, index)
             break
         end
     end
     for second = 1, timerStyle.SECONDS do
-        if data.seconds[second] == templateID then
-            data.seconds[second] = nil
+        if style.seconds[second] == templateID then
+            style.seconds[second] = nil
         end
     end
 end

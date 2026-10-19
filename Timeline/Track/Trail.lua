@@ -70,10 +70,10 @@ local function setCorners(event, trail, ...)
 end
 
 local function layout(event)
-    local horizontal = timeline.GetOrientation() == ORIENTATION_HORIZONTAL
+    local horizontal = timeline.Orientation() == ORIENTATION_HORIZONTAL
     local behindIsHigher = timeline.EntersFromStart()
-    local lineScale = timeline.GetLineScale and timeline.GetLineScale() or 1
-    local trackLength = timeline.GetTrackLength()
+    local lineScale = timeline.LineScale and timeline.LineScale() or 1
+    local trackLength = timeline.TrackLength()
     local width = event:GetWidth()
     local laid = event.trailLaid
     if not laid then

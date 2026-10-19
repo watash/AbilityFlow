@@ -281,7 +281,7 @@ function dialog.Refresh(libDialog, canUndo, canReset)
     libDialog.Settings.ResetButton:SetEnabled(canReset)
 end
 
-function dialog.Adapt(libDialog)
+function dialog.FitToTrackSettings(libDialog)
     local own = isOwn(libDialog)
     placeActions(libDialog, own)
     if libDialog.Buttons and libDialog.Settings then
@@ -314,7 +314,7 @@ end
 
 function dialog.WidenMargins(libDialog)
     libraryPadding = libDialog.widthPadding
-    dialog.Adapt(libDialog)
+    dialog.FitToTrackSettings(libDialog)
 end
 
 function dialog.FitToScreen(libDialog)

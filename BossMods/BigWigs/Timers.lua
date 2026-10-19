@@ -131,7 +131,7 @@ function bigWigsTimers.Start(sender, text, seconds, icon, key)
         return
     end
     ns.bigWigsColors.Remember(id, sender, key)
-    timeline.MarkLongEvent(id, nil, caption)
+    timeline.MarkLongEvent(id, nil, caption, true)
     timeline.RefreshEventName(id)
     shown[text] = { id = id, sender = sender }
     AbilityFlowDB.bigWigsTimerIDs = AbilityFlowDB.bigWigsTimerIDs or {}

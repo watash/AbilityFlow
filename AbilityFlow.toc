@@ -45,7 +45,7 @@ Event\EventFrame.lua
 Event\TimerStyle\Init.lua
 Event\TimerStyle\Template.lua
 Event\TimerStyle\Templates.lua
-Event\TimerStyle\Evaluate.lua
+Event\TimerStyle\Lookup.lua
 Event\Glow\Init.lua
 Event\Glow\Catalog.lua
 Event\Glow\Template.lua

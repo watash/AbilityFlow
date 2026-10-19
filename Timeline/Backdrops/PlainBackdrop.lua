@@ -12,14 +12,14 @@ frame.background = frame:CreateTexture(nil, "BACKGROUND")
 frame.background:SetTexture(BACKGROUND_TEXTURE_DEFAULT_PATH, "REPEAT", "REPEAT")
 frame.background:SetVertexColor(1, 1, 1, 1)
 
-function timeline.GetPlainEndReach()
+function timeline.PlainEndReach()
     return math.floor(timeline.currentIconSize() / 2 + 0.5)
 end
 
 local function placeBackground()
-    local horizontal = timeline.GetOrientation() == timeline.ORIENTATION_HORIZONTAL
-    local length = timeline.GetTrackLength() + 2 * timeline.GetPlainEndReach()
-    local width = timeline.GetTrackWidth()
+    local horizontal = timeline.Orientation() == timeline.ORIENTATION_HORIZONTAL
+    local length = timeline.TrackLength() + 2 * timeline.PlainEndReach()
+    local width = timeline.TrackWidth()
     local across, along = width, length
     local sizeX, sizeY = along, across
     if not horizontal then
@@ -109,7 +109,7 @@ function timeline.SetBackgroundTexture(path)
     frame.background:SetAlpha(path and 1 or 0)
 end
 
-function timeline.GetBackgroundTexture()
+function timeline.BackgroundTexture()
     return backgroundPath
 end
 
@@ -123,7 +123,7 @@ function timeline.SetBackgroundColor(red, green, blue, alpha)
     end
 end
 
-function timeline.GetBackgroundColor()
+function timeline.BackgroundColor()
     return backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a
 end
 
@@ -135,15 +135,15 @@ function timeline.SetBorder(path, offset, thickness, red, green, blue, alpha)
     applyBorder()
 end
 
-function timeline.GetBorder()
+function timeline.PlainBorder()
     return borderPath, borderOffset, borderThickness, borderColor
 end
 
-function timeline.GetBorderFrame()
+function timeline.BorderFrame()
     return border
 end
 
-function timeline.GetBorderReach()
+function timeline.BorderReach()
     if borderSuppressed or not borderPath or borderThickness <= 0 then
         return 0
     end

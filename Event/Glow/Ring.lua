@@ -30,7 +30,7 @@ local function setVisible(texture, shown)
     end
 end
 
-local function ensureTextures(ring, count)
+local function growTextures(ring, count)
     local textures = ring.textures
     for index = #textures + 1, count do
         local texture = ring.holder:CreateTexture(nil, "ARTWORK")
@@ -269,7 +269,7 @@ function glow.ShowRing(frame, glowType, color, options, share, level)
         end
         textureCount = ring.count * #SPARK_SIZES
     end
-    ensureTextures(ring, textureCount)
+    growTextures(ring, textureCount)
     for _, texture in ipairs(ring.shadow) do
         texture:SetSnapToPixelGrid(not smoothFrames[frame])
         texture:SetTexelSnappingBias(0)

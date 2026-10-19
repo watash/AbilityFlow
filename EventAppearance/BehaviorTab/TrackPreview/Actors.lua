@@ -46,7 +46,7 @@ local function partAt(sceneTime)
 end
 
 local function waitingAlpha()
-    return 1 - timeline.GetWaitingTransparency() / PERCENT
+    return 1 - timeline.WaitingTransparency() / PERCENT
 end
 
 local function mainPose(part, elapsed, remaining, finishAtZero)

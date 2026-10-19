@@ -39,18 +39,18 @@ function trackPreview.LayoutPlain()
     local function snap(value)
         return math.floor(value * scale + 0.5) / scale
     end
-    local width = snap(math.min(timeline.GetTrackWidth() * previewRatio, MAX_TRACK_WIDTH))
-    local reach = timeline.GetPlainEndReach() * previewRatio
+    local width = snap(math.min(timeline.TrackWidth() * previewRatio, MAX_TRACK_WIDTH))
+    local reach = timeline.PlainEndReach() * previewRatio
     local top = snap(trackTop - reach)
     local bottom = snap(trackTop + trackLength + reach)
-    local path = timeline.GetBackgroundTexture()
+    local path = timeline.BackgroundTexture()
     plainBackground:SetTexture(path, "REPEAT", "REPEAT")
-    plainBackground:SetVertexColor(timeline.GetBackgroundColor())
+    plainBackground:SetVertexColor(timeline.BackgroundColor())
     plainBackground:SetShown(path ~= nil)
     plainBackground:ClearAllPoints()
     plainBackground:SetSize(width, bottom - top)
     plainBackground:SetPoint("TOPLEFT", box, "TOPLEFT", snap(TRACK_CENTER_X - width / 2), -top)
-    local borderPath, offset, thickness, color = timeline.GetBorder()
+    local borderPath, offset, thickness, color = timeline.PlainBorder()
     if borderPath and thickness > 0 then
         offset = snap(offset * previewRatio)
         plainBorder:SetBackdrop({ edgeFile = borderPath, edgeSize = math.max(snap(thickness * previewRatio), 1 / scale) })
@@ -86,7 +86,7 @@ function trackPreview.LayoutTrack()
     local mirrored = direction ~= 1
     for _, half in ipairs(state.halves) do
         half.texture:SetAtlas(half.atlas, true)
-        local thickness = half.texture:GetHeight() * timeline.GetLineScale() * ICON_SIZE / LINE_REFERENCE_SIZE
+        local thickness = half.texture:GetHeight() * timeline.LineScale() * ICON_SIZE / LINE_REFERENCE_SIZE
         local corners = {}
         for index, value in ipairs(VERTICAL_CORNERS) do
             corners[index] = (mirrored and index % 2 == 1) and 1 - value or value

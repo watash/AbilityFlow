@@ -2,6 +2,12 @@
 
 Every version, the newest first. Write the notes of a new version at the top, then run `python Tools/release.py X.Y.Z --notes`, which makes CHANGELOG.md (the notes of that version only, which the release and the sites show) from its section here.
 
+## 1.0.2
+
+- The border is colored by the debuff type again.
+- Timers of BigWigs and DBM now follow the time limit too.
+- The glow now grows with the icon when it disappears.
+
 ## 1.0.1
 
 - Fixed an error that sometimes appeared in combat.

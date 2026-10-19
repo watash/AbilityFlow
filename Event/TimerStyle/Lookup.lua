@@ -2,9 +2,9 @@ local addonName, ns = ...
 
 local timerStyle = ns.timerStyle
 
-function timerStyle.Evaluate(remaining)
-    local data = timerStyle.Saved()
-    if not data.enabled then
+function timerStyle.TemplateFor(remaining)
+    local style = timerStyle.Saved()
+    if not style.enabled then
         return nil
     end
     local second = math.ceil(remaining)
@@ -12,7 +12,7 @@ function timerStyle.Evaluate(remaining)
         return nil
     end
     for nearest = second, timerStyle.SECONDS do
-        local template = data.templates[data.seconds[nearest]]
+        local template = style.templates[style.seconds[nearest]]
         if template then
             return template
         end
@@ -21,10 +21,10 @@ function timerStyle.Evaluate(remaining)
 end
 
 function timerStyle.FlashesAt(second, ignoreSwitch)
-    local data = timerStyle.Saved()
-    if (not data.enabled and not ignoreSwitch) or second < 1 or second > timerStyle.SECONDS then
+    local style = timerStyle.Saved()
+    if (not style.enabled and not ignoreSwitch) or second < 1 or second > timerStyle.SECONDS then
         return false
     end
-    local template = data.templates[data.seconds[second]]
+    local template = style.templates[style.seconds[second]]
     return template ~= nil and template.flash == true
 end

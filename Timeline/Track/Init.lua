@@ -72,6 +72,7 @@ local state = {
     longEvents = {},
     longOrder = {},
     captions = {},
+    limitedEvents = {},
     eventPool = {},
 }
 timeline.state = state

@@ -96,7 +96,7 @@ local function createResetButton(panel)
 end
 
 local function setSampleName(panel)
-    local horizontal = ns.timeline.GetOrientation() == ns.timeline.ORIENTATION_HORIZONTAL
+    local horizontal = ns.timeline.Orientation() == ns.timeline.ORIENTATION_HORIZONTAL
     panel.sample.texts.name:SetText(horizontal and L.EVENT_APPEARANCE_SAMPLE_NAME_HORIZONTAL or L.EVENT_APPEARANCE_SAMPLE_NAME)
 end
 

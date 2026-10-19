@@ -1,9 +1,9 @@
 # AbilityFlow
 
-## 1.0.1
+## 1.0.2
 
-- Fixed an error that sometimes appeared in combat.
-- Small optimizations.
-- Small improvements to the interface texts.
+- The border is colored by the debuff type again.
+- Timers of BigWigs and DBM now follow the time limit too.
+- The glow now grows with the icon when it disappears.
 
 All earlier versions: https://github.com/watash/AbilityFlow/releases

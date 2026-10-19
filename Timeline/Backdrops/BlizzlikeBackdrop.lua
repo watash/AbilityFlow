@@ -40,7 +40,7 @@ function timeline.CreateBlizzlikeBackdrop(frame)
     local pieces = {}
     local breakMasks = {}
 
-    local function ensurePieces(count)
+    local function growPieces(count)
         for i = #pieces + 1, count do
             pieces[i] = frame:CreateTexture(nil, "ARTWORK", nil, -1)
             pieces[i]:Hide()
@@ -48,7 +48,7 @@ function timeline.CreateBlizzlikeBackdrop(frame)
         return pieces
     end
 
-    local function ensureMasks(count)
+    local function growMasks(count)
         for i = #breakMasks + 1, count do
             breakMasks[i] = frame:CreateMaskTexture(nil, "ARTWORK")
         end
@@ -77,11 +77,11 @@ function timeline.CreateBlizzlikeBackdrop(frame)
         end
         frame.background:Hide()
 
-        local horizontal = timeline.GetOrientation() == timeline.ORIENTATION_HORIZONTAL
-        local length = timeline.GetTrackLength()
-        local dividerSize = timeline.GetEventSize()
+        local horizontal = timeline.Orientation() == timeline.ORIENTATION_HORIZONTAL
+        local length = timeline.TrackLength()
+        local dividerSize = timeline.currentIconSize()
         local zeroAtStart = timeline.EntersFromStart()
-        local lineScale = timeline.GetLineScale()
+        local lineScale = timeline.LineScale()
 
         local function along(distance)
             return zeroAtStart and distance or (length - distance)
@@ -95,7 +95,7 @@ function timeline.CreateBlizzlikeBackdrop(frame)
         orientDivider(dividerStart, not horizontal)
         orientDivider(dividerEnd, horizontal)
         local crossSize = dividerSize
-        local inset = timeline.GetEndReach()
+        local inset = timeline.EndReach()
         local barLength = 2 * inset * barShare
         local shadowLength = 2 * inset - barLength
         for index, divider in ipairs({ dividerStart, dividerEnd }) do
@@ -131,7 +131,7 @@ function timeline.CreateBlizzlikeBackdrop(frame)
                         divider.shadow:SetPoint("BOTTOM", divider.bar, "TOP")
                     end
                 end
-                divider.shadow:SetColorTexture(timeline.GetBackgroundColor())
+                divider.shadow:SetColorTexture(timeline.BackgroundColor())
                 divider.mask:SetAllPoints(divider.shadow)
                 divider.bar:Show()
                 divider.shadow:Show()
@@ -170,14 +170,14 @@ function timeline.CreateBlizzlikeBackdrop(frame)
         capZero:Show()
         capFar:Show()
 
-        local shadowThickness = timeline.GetTrackWidth() * SHADOW_SPREAD
+        local shadowThickness = timeline.TrackWidth() * SHADOW_SPREAD
         shadow:ClearAllPoints()
-        shadow:SetColorTexture(timeline.GetBackgroundColor())
+        shadow:SetColorTexture(timeline.BackgroundColor())
         shadowMask:SetAtlas(horizontal and "combattimeline-line-shadow" or "combattimeline-line-shadow-vertical", true)
         if shadowMask.ClearTextureSlice then
             shadowMask:ClearTextureSlice()
         end
-        local entryReach, exitReach = timeline.GetWaitingExtents()
+        local entryReach, exitReach = timeline.WaitingExtents()
         local lowReach = zeroAtStart and exitReach or entryReach
         local highReach = zeroAtStart and entryReach or exitReach
         if horizontal then
@@ -197,7 +197,7 @@ function timeline.CreateBlizzlikeBackdrop(frame)
         local tileableLength = math.max(0, length - 2 * capLength)
         local tileCount = LINE_AS_TWO_PIECES and 0 or math.max(1, math.floor(tileableLength / capLength + 0.5))
         local tileLength = tileCount > 0 and tileableLength / tileCount or 0
-        local pieceList = ensurePieces(tileCount)
+        local pieceList = growPieces(tileCount)
         for i = 1, tileCount do
             local piece = pieceList[i]
             piece:SetTexture(LINE_TEXTURE, "CLAMP", "CLAMP")
@@ -228,7 +228,7 @@ function timeline.CreateBlizzlikeBackdrop(frame)
         for t = BREAK_OFFSET, threshold - BREAK_END_MARGIN, BREAK_INTERVAL do
             table.insert(breaks, t)
         end
-        local masks = ensureMasks(#breaks)
+        local masks = growMasks(#breaks)
         for _, mask in ipairs(masks) do
             for _, piece in ipairs(pieces) do
                 piece:RemoveMaskTexture(mask)
@@ -279,9 +279,9 @@ function timeline.CreateBlizzlikeBackdrop(frame)
             return enabled
         end,
         Tint = function()
-            shadow:SetColorTexture(timeline.GetBackgroundColor())
-            dividerStart.shadow:SetColorTexture(timeline.GetBackgroundColor())
-            dividerEnd.shadow:SetColorTexture(timeline.GetBackgroundColor())
+            shadow:SetColorTexture(timeline.BackgroundColor())
+            dividerStart.shadow:SetColorTexture(timeline.BackgroundColor())
+            dividerEnd.shadow:SetColorTexture(timeline.BackgroundColor())
         end,
     }
 end

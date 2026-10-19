@@ -30,7 +30,7 @@ function trackPreview.WaitingStep()
 end
 
 local function borderReach()
-    return timeline.GetBorderReach() * ICON_SIZE / math.max(timeline.currentIconSize(), 1)
+    return timeline.BorderReach() * ICON_SIZE / math.max(timeline.currentIconSize(), 1)
 end
 
 function trackPreview.EntryFirstOffset(animated)

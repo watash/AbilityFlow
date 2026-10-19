@@ -34,10 +34,10 @@ function timerStyle.newTemplate()
     }
 end
 
-function timerStyle.Sanitize(data)
-    local clean = { enabled = data.enabled ~= false, seconds = {}, templates = {}, order = {}, nextID = 1 }
-    local templates = type(data.templates) == "table" and data.templates or {}
-    for _, templateID in ipairs(type(data.order) == "table" and data.order or {}) do
+function timerStyle.Sanitize(style)
+    local clean = { enabled = style.enabled ~= false, seconds = {}, templates = {}, order = {}, nextID = 1 }
+    local templates = type(style.templates) == "table" and style.templates or {}
+    for _, templateID in ipairs(type(style.order) == "table" and style.order or {}) do
         local template = templates[templateID]
         if type(templateID) == "number" and type(template) == "table" and not clean.templates[templateID]
             and #clean.order < timerStyle.MAX_TEMPLATES then
@@ -67,10 +67,10 @@ function timerStyle.Sanitize(data)
             clean.nextID = math.max(clean.nextID, templateID + 1)
         end
     end
-    if type(data.nextID) == "number" then
-        clean.nextID = math.max(clean.nextID, data.nextID)
+    if type(style.nextID) == "number" then
+        clean.nextID = math.max(clean.nextID, style.nextID)
     end
-    local seconds = type(data.seconds) == "table" and data.seconds or {}
+    local seconds = type(style.seconds) == "table" and style.seconds or {}
     for second = 1, timerStyle.SECONDS do
         if clean.templates[seconds[second]] then
             clean.seconds[second] = seconds[second]

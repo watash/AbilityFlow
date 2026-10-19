@@ -16,7 +16,7 @@ function general.UpdateOrientationNote()
     if state.orientationNote then
         local selected = state.selected
         local onNameTab = selected == "name" or selected == "nameBackground"
-        state.orientationNote:SetShown(onNameTab and ns.timeline.GetOrientation() == ns.timeline.ORIENTATION_HORIZONTAL)
+        state.orientationNote:SetShown(onNameTab and ns.timeline.Orientation() == ns.timeline.ORIENTATION_HORIZONTAL)
     end
 end
 

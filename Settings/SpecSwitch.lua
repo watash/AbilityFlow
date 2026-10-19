@@ -11,20 +11,20 @@ ns.specSwitch = specSwitch
 
 local CLASS_ID_RESULT = 3
 
-function specSwitch.Count()
+function specSwitch.NumSpecs()
     local classID = select(CLASS_ID_RESULT, UnitClass("player"))
     local count = classID and C_SpecializationInfo.GetNumSpecializationsForClassID(classID) or 0
     return math.min(count, profiles.MAX_SPECS)
 end
 
-function specSwitch.Info(spec)
+function specSwitch.NameAndIcon(spec)
     local _, name, _, icon = C_SpecializationInfo.GetSpecializationInfo(spec)
     return name, icon
 end
 
 profiles.ActiveSpec = function()
     local spec = C_SpecializationInfo.GetSpecialization()
-    if not spec or not C_SpecializationInfo.CanPlayerUseTalentUI() or spec > specSwitch.Count() then
+    if not spec or not C_SpecializationInfo.CanPlayerUseTalentUI() or spec > specSwitch.NumSpecs() then
         return 0
     end
     return spec

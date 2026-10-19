@@ -89,7 +89,7 @@ local function placeTextHolder(event)
     holder:SetScale(factor)
 end
 
-local function ensurePulses(event)
+local function makePulsesOnce(event)
     if event.pulse then
         return
     end
@@ -158,7 +158,7 @@ local function tuneBadgePulse(pulse, centerX, centerY, strength)
 end
 
 function effects.StartPulse(event, scaleText, scaleMarks, scaleRoles, badgeCenter, strength)
-    ensurePulses(event)
+    makePulsesOnce(event)
     strength = strength or effects.FULL_STRENGTH
     if event.pulse:IsPlaying() and (event.pulseScaleText ~= scaleText or event.pulseScaleMarks ~= scaleMarks
         or event.pulseScaleRoles ~= scaleRoles or event.pulseStrength ~= strength) then

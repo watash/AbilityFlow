@@ -16,8 +16,8 @@ local SHADOW_SPREAD = 1.4
 local DIVIDER_GAP = 33
 timeline.DIVIDER_GAP = DIVIDER_GAP
 
-function timeline.GetLineScale()
-    local extraTrack = math.max(0, timeline.GetTrackWidth() - timeline.TRACK_WIDTH)
+function timeline.LineScale()
+    local extraTrack = math.max(0, timeline.TrackWidth() - timeline.TRACK_WIDTH)
     return 1 + extraTrack * LINE_GROWTH_PER_TRACK_PIXEL / LINE_THICKNESS
 end
 local DIVIDER_BAR_COLUMNS = 4

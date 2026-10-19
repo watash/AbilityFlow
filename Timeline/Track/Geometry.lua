@@ -37,15 +37,15 @@ function timeline.currentCrop()
     return state.iconZoom / 100
 end
 
-function timeline.GetTrackLength()
+function timeline.TrackLength()
     return state.trackLength
 end
 
-function timeline.GetTrackWidth()
+function timeline.TrackWidth()
     return state.trackWidth
 end
 
-function timeline.GetOrientation()
+function timeline.Orientation()
     return state.orientation
 end
 
@@ -102,7 +102,7 @@ function timeline.SetWaitingTransparency(percent)
     end
 end
 
-function timeline.GetWaitingTransparency()
+function timeline.WaitingTransparency()
     return state.waitingTransparency
 end
 
@@ -124,10 +124,6 @@ function timeline.SetOrientation(value)
     notifyGeometryChanged()
 end
 
-function timeline.GetDirection()
-    return state.direction
-end
-
 function timeline.SetDirection(value)
     local turned = state.direction ~= value
     state.direction = value
@@ -141,15 +137,11 @@ function timeline.EntersFromStart()
     return state.direction == DIRECTION_TOP or state.direction == DIRECTION_RIGHT
 end
 
-function timeline.GetIconSize()
+function timeline.IconSize()
     return state.iconBaseSize
 end
 
-function timeline.GetEventSize()
-    return timeline.currentIconSize()
-end
-
-function timeline.GetEndReach()
+function timeline.EndReach()
     local info = C_Texture.GetAtlasInfo(timeline.DIVIDER_ATLAS)
     return ns.endReach.Of(timeline.currentIconSize(), info and info.width, info and info.height)
 end

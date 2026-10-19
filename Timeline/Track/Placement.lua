@@ -69,6 +69,9 @@ local function zoneOf(eventID)
     if place == PLACE_EXIT then
         return ZONE_EXIT, remaining
     elseif place == PLACE_ENTRY then
+        if state.limitedEvents[eventID] and remaining > state.timeLimit then
+            return nil
+        end
         if remaining >= TRACK_SPAN_SECONDS + timeline.ArrivalLead() then
             return ZONE_QUEUE, remaining
         elseif remaining >= TRACK_SPAN_SECONDS then
@@ -311,8 +314,9 @@ function timeline.updateEvents(_, step)
     end
 end
 
-function timeline.MarkLongEvent(eventID, place, caption)
+function timeline.MarkLongEvent(eventID, place, caption, limited)
     state.captions[eventID] = caption
+    state.limitedEvents[eventID] = limited or nil
     if not state.longEvents[eventID] then
         state.longEvents[eventID] = place or PLACE_ENTRY
         state.longOrder[#state.longOrder + 1] = eventID

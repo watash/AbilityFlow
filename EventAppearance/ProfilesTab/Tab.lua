@@ -129,7 +129,7 @@ local function attachRowButton(row, menu, tooltip, offset, size, onClick, pictur
 end
 
 local function createSpecs(content, previous)
-    local count = specSwitch.Count()
+    local count = specSwitch.NumSpecs()
     local box, heading = createSection(content, previous, L.PROFILE_SPECS_HEADING, BOX_HEIGHT_FIRST)
     specCheckbox = controls.Checkbox(box, heading, L.PROFILE_SPECS_ENABLE, profiles.SpecEnabled, function(checked)
         profiles.SetSpecEnabled(checked)
@@ -137,7 +137,7 @@ local function createSpecs(content, previous)
     end, 0, SPEC_CHECKBOX_RAISE)
     local above = specCheckbox
     for spec = 1, count do
-        local name, icon = specSwitch.Info(spec)
+        local name, icon = specSwitch.NameAndIcon(spec)
         local picture = box:CreateTexture(nil, "ARTWORK")
         picture:SetSize(SPEC_ICON_SIZE, SPEC_ICON_SIZE)
         picture:SetTexture(icon)

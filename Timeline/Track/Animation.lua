@@ -226,6 +226,13 @@ function timeline.FinishEvent(eventID)
     event.finishFadeStep:SetDuration(FINISH_SECONDS / animations.speed)
     event.finishFade:Play()
     event.finishGrow:Play()
+    if ns.glow.ShownOn(event.container) then
+        event.finishBreath = event.finishBreath or function()
+            return 1 + (FINISH_GROWTH - 1) * event.finishGrowStep:GetSmoothProgress()
+        end
+        event.finishSteps = event.finishSteps or { event.finishGrowStep }
+        ns.glow.Breathe(event.container, event.finishBreath, event.finishSteps)
+    end
 end
 
 function timeline.CancelEvent(eventID, sweep)

@@ -85,13 +85,13 @@ local function applyMarkScale()
 end
 
 local function placeTicks()
-    local length = timeline.GetTrackLength()
-    local width = timeline.GetTrackWidth()
-    local horizontal = timeline.GetOrientation() == timeline.ORIENTATION_HORIZONTAL
+    local length = timeline.TrackLength()
+    local width = timeline.TrackWidth()
+    local horizontal = timeline.Orientation() == timeline.ORIENTATION_HORIZONTAL
     local thickness = BAR_THICKNESS * markScale
     local across = width
     if timeline.IsBlizzlikeBackdrop and timeline.IsBlizzlikeBackdrop() then
-        local icon = timeline.GetEventSize()
+        local icon = timeline.currentIconSize()
         across = math.min(width, (icon + 2 * ns.eventStyle.BorderThickness(icon)) * BLIZZLIKE_MARK_ACROSS_SHARE)
     end
     local widest = 0

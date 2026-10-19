@@ -11,10 +11,10 @@ end
 
 function timeline.RefreshBackdropReach()
     if timeline.onBackdropReachChanged then
-        local path, offset, thickness = timeline.GetBorder()
+        local path, offset, thickness = timeline.PlainBorder()
         local border = (path and thickness > 0) and math.max(offset, 0) or 0
-        local along = math.max(timeline.DIVIDER_GAP, timeline.GetPlainEndReach()) + border
-        if timeline.GetOrientation() == timeline.ORIENTATION_HORIZONTAL then
+        local along = math.max(timeline.DIVIDER_GAP, timeline.PlainEndReach()) + border
+        if timeline.Orientation() == timeline.ORIENTATION_HORIZONTAL then
             timeline.onBackdropReachChanged(along, border)
         else
             timeline.onBackdropReachChanged(border, along)

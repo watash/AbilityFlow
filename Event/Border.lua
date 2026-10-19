@@ -124,6 +124,7 @@ end
 function eventStyle.AssignBorderArt(event)
     local blizzardStyle = state.border.style == "BLIZZARD"
     local ownColor = state.border.style == "DEBUFF" and eventStyle.OwnColor(event, "border") or nil
+    local hidden = event.typeFillsHidden == true or (ns.statusMark ~= nil and ns.statusMark.IsFramed(event))
     for index, entry in ipairs(ns.debuff.TYPES) do
         for _, fill in ipairs(event.debuffBorders[index]) do
             if event.eventID then
@@ -144,6 +145,7 @@ function eventStyle.AssignBorderArt(event)
                 fill:SetColorTexture(color.r, color.g, color.b, color.a)
             end
             ns.eventIndicators.Smooth(fill)
+            fill:SetShown(not hidden)
         end
     end
     event.borderArtStyle = state.border.style

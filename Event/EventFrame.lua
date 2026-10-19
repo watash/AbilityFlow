@@ -61,7 +61,7 @@ function eventFrame.SmoothRingMask(event)
     end
 end
 
-local function ensureRingMask(event)
+local function makeRingMaskOnce(event)
     if event.ringMask then
         return
     end
@@ -71,7 +71,7 @@ local function ensureRingMask(event)
 end
 
 function eventFrame.PlaceRingMask(event)
-    ensureRingMask(event)
+    makeRingMaskOnce(event)
     local picture = event:GetWidth()
     if picture <= 0 then
         return
@@ -84,7 +84,7 @@ function eventFrame.PlaceRingMask(event)
 end
 
 function eventFrame.MaskRing(event, ring, masked)
-    ensureRingMask(event)
+    makeRingMaskOnce(event)
     for _, strip in ipairs(ring) do
         if masked and not strip.ringMasked then
             strip:AddMaskTexture(event.ringMask)
